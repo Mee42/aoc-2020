@@ -31,9 +31,7 @@ fun treesWith(inputField: List<String>, colD: Int, rowD: Int): Int {
         if (tree == '#') trees++
         row += rowD
         col += colD
-        println("$row,$col -> $tree")
     }
-    println("$rowD : $colD  = $trees")
     return trees
 }
 
