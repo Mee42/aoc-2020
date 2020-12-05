@@ -6,13 +6,9 @@ val fields = listOf("byr","iyr","eyr","hgt","hcl","ecl","pid","cid").toSet()
 val fields2 = listOf("byr","iyr","eyr","hgt","hcl","ecl","pid").toSet()
 
 
-fun f(i: Int): Boolean {
-    println(i)
-    return true
-}
-
 fun main() {
-    val answer = input(4).split("\n\n")
+    val answer = input(4)
+            .split("\n\n")
             .map { passport -> passport
                     .trim()
                     .split(Regex("""\s+"""))
