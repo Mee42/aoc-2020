@@ -32,3 +32,12 @@ fun inputLines(day: Int, year: Int = 2020, filterBlank: Boolean = true): List<St
 
 
 fun <T> T.apIf(conditional: Boolean, block: (T) -> T): T = if(conditional) block(this) else this
+
+fun <T> List<T>.foldSameType(folder: (T, T) -> T, ifSizeIsZero: T? = null): T {
+    if(isEmpty()) return ifSizeIsZero ?: error("size == 0, and there's no sizeofzero default value")
+    var value = first()
+    for(i in 1 until size) {
+        value = folder(this[i], value)
+    }
+    return value
+}
