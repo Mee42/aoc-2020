@@ -27,7 +27,7 @@ fun main1() {
 fun main2() {
     val map = parse(input(day = 7))
     fun subBags(name: String): Int {
-        return 1 + map[name]!!.sumBy(::subBags)
+        return 1 + map.getValue(name).sumBy(::subBags)
     }
     println(subBags("shiny gold bag") - 1)
 }
