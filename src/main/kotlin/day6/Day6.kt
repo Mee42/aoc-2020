@@ -15,4 +15,3 @@ fun main() {
 fun main1() {
     println(input(day = 6).split("\n\n").map { it.replace("\n","").toSet() }.sumBy { it.size })
 }
-

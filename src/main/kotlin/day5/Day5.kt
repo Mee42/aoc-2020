@@ -1,6 +1,7 @@
 package day5
 
 import inputLines
+import java.util.*
 
 fun getPos(input: String): Pair<Int, Int> =
     input.take(7).replace("F", "0").replace("B", "1").toInt(2) to
