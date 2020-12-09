@@ -43,3 +43,13 @@ fun <T> List<T>.foldSameType(folder: (T, T) -> T, ifSizeIsZero: T? = null): T {
     }
     return value
 }
+
+
+
+
+
+fun <T> permutations(input: List<T>, length: Int): List<List<T/*size=length*/>> {
+    if(length == 0) return input.map { emptyList() }
+    if(length == 1) return input.map { listOf(it) }
+    return permutations(input, length - 1).flatMap { list -> input.map { list  + it } }
+}
