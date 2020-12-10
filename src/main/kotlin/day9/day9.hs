@@ -6,12 +6,12 @@ import Data.Maybe
 main1 :: Int -> [Int] -> Int
 main1 count xs = if isValid then main1 count (tail xs) else current
     where current = xs!!count
-          isValid = any (\[a, b]->a+b==current) $ permutation 2 (take count xs)
+          isValid = any (\[a, b]->a+b==current) $ combinations 2 (take count xs)
 
-permutation :: Int -> [a] -> [[a]]
-permutation 0 xs = [[]  | x <- xs]
-permutation 1 xs = [[x] | x <- xs]
-permutation n xs = permutation (n - 1) xs >>= \list -> (:list) <$> xs
+combinations :: Int -> [a] -> [[a]]
+combinations 0 xs = [[]  | x <- xs]
+combinations 1 xs = [[x] | x <- xs]
+combinations n xs = combinations (n - 1) xs >>= \list -> (:list) <$> xs
 
 example = [35,20,15,25,47,40,62,55,65,95,102,117,150,182,127,219,299,277,309,576]
 
