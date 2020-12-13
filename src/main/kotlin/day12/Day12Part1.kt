@@ -24,8 +24,8 @@ R90
 F11"""
 
 fun main() {
-    var xPosition = 10
-    var yPosition = 1
+    var xPosition = 0
+    var yPosition = 0
     var direction = Direction.EAST
     fun move(direction: Direction, amount: Int) {
         xPosition += direction.xOff * amount
@@ -54,6 +54,7 @@ fun main() {
                         }
                     }
                }
+                println("$line  $xPosition, $yPosition")
             }
     println(xPosition)
     println(yPosition)
