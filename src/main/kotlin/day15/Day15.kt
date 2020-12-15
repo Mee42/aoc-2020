@@ -10,8 +10,7 @@ fun main() {
         val realInput = "10,16,6,0,1,17"
         val input = realInput.split(",").map { it.trim().toInt() }
         var lastNumberSaid = input[0]
-        val lastSaidAt = mutableMapOf<Int, Int>()
-
+        val lastSaidAt = IntArray(30000000) { -1 }
 
         for ((i, value) in input.withIndex()) {
             if (i != input.lastIndex) {
@@ -21,10 +20,9 @@ fun main() {
 //        println("${i + 1} $value")
         }
         lastNumberSaid = input.last()
-        var maxNumber = 0
         for (i: Int in (input.size + 1)..30000000) {
             val history = lastSaidAt[lastNumberSaid]
-            if (history != null) {
+            if (history != -1) {
                 val newValue = (i - 1) - history
                 lastSaidAt[lastNumberSaid] = i - 1
                 lastNumberSaid = newValue
@@ -32,10 +30,8 @@ fun main() {
                 lastSaidAt[lastNumberSaid] = i - 1
                 lastNumberSaid = 0
             }
-            maxNumber = max(lastNumberSaid, maxNumber)
         }
         println(">>$lastNumberSaid")
-        println("max: $maxNumber")
     }
-    println(x / 1000)
+    println(x)
 }
