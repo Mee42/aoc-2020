@@ -1,7 +1,7 @@
-package day17
+package day17.part1
 
-import kotlin.math.absoluteValue
 import inputLines
+import day17.*
 
 private data class Point(val x: Int, val y: Int, val z: Int) {
     fun neighbors(): List<Point> { 
@@ -16,41 +16,9 @@ private data class Point(val x: Int, val y: Int, val z: Int) {
     }
 }
 
-// -3 -2, -1, 0, 1 ,2
-// 0   1   2  3  4  5
-// size   = 6
-// size/2 = 3
-data class Plane<T>(private val data: List<T>) {
-    operator fun get(i: Int): T {
-        return data[i + data.size/2]
-    }
-    fun setAndCopy(i: Int, value: T): Plane<T> {
-        // double the size of the list so we can fit it
-        return Plane(data.copySet(i + data.size/2, value))
-    }
-    // default will be called with the value at '0', in case that information is wanted
-    fun expanded(default: (T) -> T): Plane<T> {
-        return Plane(listOf(default(get(0))) + data + listOf(default(get(0))))
-    }
-    val indexes
-        get() = -data.size/2..data.size/2
-    
-    
-    fun <R> map(f: (T, Int) -> R): Plane<R> {
-        return Plane(data.mapIndexed { i, value -> f(value, i - data.size/2) })
-    }
-}
 
-
-fun <T> List<T>.copySet(i: Int, value: T): List<T> {
-    val new = mutableListOf<T>()
-    new.addAll(this)
-    new[i] = value
-    return new
-}
 
 private class Board<T> (private val space: Plane<Plane<Plane<T>>>, private val fToString: (T) -> Char){
-//    constructor(starterValue: T, fToString: (T) -> Char): this(Plane(listOf(Plane(listOf(Plane(listOf(starterValue)))))), fToString)
 
     operator fun get(point: Point): T {
         return space[point.z][point.x][point.y]
@@ -101,12 +69,6 @@ private class Board<T> (private val space: Plane<Plane<Plane<T>>>, private val f
 
 }
 
-val sampleInput = """
-.#.
-..#
-###
-""".trim()
-
 fun main() {
     val input =
 //            sampleInput.split("\n")
@@ -139,13 +101,6 @@ private fun tick(b: Board<Boolean>) = b.mapSameType { point, value ->
 }
 
 
-
-
-fun <T> T.repeat(i: Int): List<T> {
-    val n = mutableListOf<T>()
-    for(x in 0 until i) n.add(this)
-    return n
-}
 
 
 
